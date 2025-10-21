@@ -12,8 +12,13 @@ import { redirect } from "next/navigation";
 export default async function Home() {
   const user = await currentUser();
 
-  // the best way of syncing => webhooks
-  await syncUser();
+  // sync user safely with error handling
+  try {
+    await syncUser();
+  } catch (error) {
+    console.error("Failed to sync user:", error);
+    // Continue rendering the page even if sync fails
+  }
 
   // redirect auth user to dashboard
   if (user) redirect("/dashboard");
