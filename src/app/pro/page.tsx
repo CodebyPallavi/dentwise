@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
 import { PricingTable } from "@clerk/nextjs";
-import { auth, currentUser } from "@clerk/nextjs/server";
+import { currentUser } from "@clerk/nextjs/server";
 import { CrownIcon } from "lucide-react";
 import { redirect } from "next/navigation";
 
@@ -49,7 +49,29 @@ async function ProPage() {
             </p>
           </div>
 
-          <PricingTable />
+          <PricingTable
+            appearance={{
+              elements: {
+                card: "border border-border rounded-xl shadow-sm hover:shadow-md transition-shadow",
+                cardHeader: "text-center p-6 border-b border-border",
+                cardBody: "p-6",
+                cardFooter: "p-6 pt-0",
+                priceText: "text-3xl font-bold text-foreground",
+                planName: "text-xl font-semibold mb-2 text-foreground",
+                planDescription: "text-muted-foreground text-sm mb-4",
+                featureList: "space-y-3 mb-6",
+                featureListItem: "flex items-center gap-2 text-sm text-foreground",
+                subscribeButton: "w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg py-2 px-4 font-medium transition-colors"
+              },
+              variables: {
+                colorPrimary: "hsl(var(--primary))",
+                colorBackground: "hsl(var(--background))",
+                colorText: "hsl(var(--foreground))",
+                colorTextSecondary: "hsl(var(--muted-foreground))",
+                borderRadius: "0.75rem"
+              }
+            }}
+          />
         </div>
       </div>
     </>
